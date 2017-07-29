@@ -18,6 +18,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _GP1 `Vb ~T0 @X0 0 e@49 ]
 "537
 [v _GP0 `Vb ~T0 @X0 0 e@48 ]
+"543
+[v _GP3 `Vb ~T0 @X0 0 e@51 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -240,10 +242,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "10
 [p x MCLRE=OFF ]
 "15
-[v _Delay_ms `(v ~T0 @X0 1 sf1`ui ]
+[v _Delay_us `(v ~T0 @X0 1 sf1`ui ]
 {
-[; ;main.c: 15: static void Delay_ms(unsigned int DELAY_CNT) {
-[e :U _Delay_ms ]
+[; ;main.c: 15: static void Delay_us(unsigned int DELAY_CNT) {
+[e :U _Delay_us ]
 [v _DELAY_CNT `ui ~T0 @X0 1 r1 ]
 [f ]
 [; ;main.c: 16: for (unsigned int i = 0; i < DELAY_CNT; i++) {
@@ -254,9 +256,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 28  ]
 [e :U 25 ]
 {
-[; ;main.c: 17: _delay((unsigned long)((1)*(8000000/4000.0)));
+[; ;main.c: 17: _delay((unsigned long)((1)*(8000000/4000000.0)));
 "17
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "18
 }
 "16
@@ -271,90 +273,85 @@ Version 3.2 HI-TECH Software Intermediate Code
 "19
 [e :UE 24 ]
 }
-"21
-[v _Delay_us `(v ~T0 @X0 1 sf1`ui ]
-{
-[; ;main.c: 21: static void Delay_us(unsigned int DELAY_CNT) {
-[e :U _Delay_us ]
-[v _DELAY_CNT `ui ~T0 @X0 1 r1 ]
-[f ]
-[; ;main.c: 22: for (unsigned int i = 0; i < DELAY_CNT; i++) {
-"22
-{
-[v _i `ui ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `ui ]
-[e $U 33  ]
-[e :U 30 ]
-{
-[; ;main.c: 23: _delay((unsigned long)((1)*(8000000/4000000.0)));
-"23
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
-"24
-}
-"22
-[e ++ _i -> -> 1 `i `ui ]
-[e :U 33 ]
-[e $ < _i _DELAY_CNT 30  ]
-[e :U 31 ]
-"24
-}
-[; ;main.c: 24: }
-[; ;main.c: 25: }
-"25
-[e :UE 29 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"27
+"21
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 27: void main(void) {
+[; ;main.c: 21: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 29: OPTION = 0b11000000;
-"29
+"23
+[v _i `l ~T0 @X0 1 a ]
+[; ;main.c: 23: long int i;
+[; ;main.c: 25: OPTION = 0b11000000;
+"25
 [e = _OPTION -> -> 192 `i `uc ]
-[; ;main.c: 30: TRISGPIO = 0b1000;
-"30
+[; ;main.c: 26: TRISGPIO = 0b1000;
+"26
 [e = _TRISGPIO -> -> 8 `i `uc ]
-[; ;main.c: 31: ANS0 = 0;
-"31
+[; ;main.c: 27: ANS0 = 0;
+"27
 [e = _ANS0 -> -> 0 `i `b ]
-[; ;main.c: 32: ANS1 = 0;
-"32
+[; ;main.c: 28: ANS1 = 0;
+"28
 [e = _ANS1 -> -> 0 `i `b ]
-[; ;main.c: 34: GP2=0; GP1=0; GP0=0;
-"34
+[; ;main.c: 30: GP2=0; GP1=0; GP0=0;
+"30
 [e = _GP2 -> -> 0 `i `b ]
 [e = _GP1 -> -> 0 `i `b ]
 [e = _GP0 -> -> 0 `i `b ]
-[; ;main.c: 36: while(1) {
-"36
-[e :U 36 ]
+[; ;main.c: 32: while(1) {
+"32
+[e :U 31 ]
 {
-[; ;main.c: 38: GP2=0; GP1=0; GP0=0;
-"38
-[e = _GP2 -> -> 0 `i `b ]
-[e = _GP1 -> -> 0 `i `b ]
-[e = _GP0 -> -> 0 `i `b ]
-[; ;main.c: 39: Delay_us(1500);
-"39
-[e ( _Delay_us (1 -> -> 1500 `i `ui ]
-[; ;main.c: 40: GP2=1; GP1=1; GP0=1;
-"40
-[e = _GP2 -> -> 1 `i `b ]
-[e = _GP1 -> -> 1 `i `b ]
+[; ;main.c: 34: if(GP3 == 0) {
+"34
+[e $ ! == -> _GP3 `i -> 0 `i 33  ]
+{
+[; ;main.c: 35: GP0=1;
+"35
 [e = _GP0 -> -> 1 `i `b ]
-[; ;main.c: 41: Delay_ms(1);
-"41
-[e ( _Delay_ms (1 -> -> 1 `i `ui ]
-"42
-}
-[e :U 35 ]
+[; ;main.c: 36: Delay_us(180);
 "36
-[e $U 36  ]
-[e :U 37 ]
-[; ;main.c: 42: };
-[; ;main.c: 43: }
+[e ( _Delay_us (1 -> -> 180 `i `ui ]
+[; ;main.c: 37: GP0=0;
+"37
+[e = _GP0 -> -> 0 `i `b ]
+[; ;main.c: 38: Delay_us(1500-180);
+"38
+[e ( _Delay_us (1 -> - -> 1500 `i -> 180 `i `ui ]
+"39
+}
+[e :U 33 ]
+[; ;main.c: 39: };
+[; ;main.c: 41: if(GP3 != 0) {
+"41
+[e $ ! != -> _GP3 `i -> 0 `i 34  ]
+{
+[; ;main.c: 42: GP0=1;
+"42
+[e = _GP0 -> -> 1 `i `b ]
+[; ;main.c: 43: Delay_us(50);
 "43
-[e :UE 34 ]
+[e ( _Delay_us (1 -> -> 50 `i `ui ]
+[; ;main.c: 44: GP0=0;
+"44
+[e = _GP0 -> -> 0 `i `b ]
+[; ;main.c: 45: Delay_us(1500-50);
+"45
+[e ( _Delay_us (1 -> - -> 1500 `i -> 50 `i `ui ]
+"46
+}
+[e :U 34 ]
+[; ;main.c: 46: };
+"48
+}
+[e :U 30 ]
+"32
+[e $U 31  ]
+[e :U 32 ]
+[; ;main.c: 48: };
+[; ;main.c: 49: }
+"49
+[e :UE 29 ]
 }

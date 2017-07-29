@@ -12,12 +12,6 @@
 #define MHz 000000
 #define _XTAL_FREQ 8MHz
 
-static void Delay_ms(unsigned int DELAY_CNT) {
-    for (unsigned int i = 0; i < DELAY_CNT; i++) {
-        __delay_ms(1);
-    }
-}
-
 static void Delay_us(unsigned int DELAY_CNT) {
     for (unsigned int i = 0; i < DELAY_CNT; i++) {
         __delay_us(1);
@@ -25,6 +19,8 @@ static void Delay_us(unsigned int DELAY_CNT) {
 }
 
 void main(void) {
+    
+    long int i;
         
     OPTION = 0b11000000;
     TRISGPIO = 0b1000; // input GP3 / output GP2,GP1,GP0    
@@ -35,9 +31,19 @@ void main(void) {
 
     while(1) {
         
-        GP2=0; GP1=0; GP0=0;
-        Delay_us(1500);
-        GP2=1; GP1=1; GP0=1;
-        Delay_ms(1);    
+        if(GP3 == 0) {  // optimize to MG996R
+            GP0=1;
+            Delay_us(180);
+            GP0=0;
+            Delay_us(1500-180);   
+        };
+        
+       if(GP3 != 0) {
+            GP0=1;
+            Delay_us(50);
+            GP0=0;
+            Delay_us(1500-50);   
+            };
+         
     };  //  while(1)
 }
