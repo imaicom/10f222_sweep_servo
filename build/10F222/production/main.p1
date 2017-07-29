@@ -331,19 +331,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 "36
 [e :U 36 ]
 {
-[; ;main.c: 38: GP2=1; GP1=1; GP0=1;
+[; ;main.c: 38: GP2=0; GP1=0; GP0=0;
 "38
-[e = _GP2 -> -> 1 `i `b ]
-[e = _GP1 -> -> 1 `i `b ]
-[e = _GP0 -> -> 1 `i `b ]
-[; ;main.c: 39: Delay_us(1500);
-"39
-[e ( _Delay_us (1 -> -> 1500 `i `ui ]
-[; ;main.c: 40: GP2=0; GP1=0; GP0=0;
-"40
 [e = _GP2 -> -> 0 `i `b ]
 [e = _GP1 -> -> 0 `i `b ]
 [e = _GP0 -> -> 0 `i `b ]
+[; ;main.c: 39: Delay_us(1500);
+"39
+[e ( _Delay_us (1 -> -> 1500 `i `ui ]
+[; ;main.c: 40: GP2=1; GP1=1; GP0=1;
+"40
+[e = _GP2 -> -> 1 `i `b ]
+[e = _GP1 -> -> 1 `i `b ]
+[e = _GP0 -> -> 1 `i `b ]
 [; ;main.c: 41: Delay_ms(1);
 "41
 [e ( _Delay_ms (1 -> -> 1 `i `ui ]

@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.42 build -159332390 
-                                                                                               Sat Jul 29 05:48:07 2017
+                                                                                               Sat Jul 29 09:32:53 2017
 
 Microchip Technology Omniscient Code Generator v1.42 (Free mode) build 201704130522
      1                           	processor	10F222
@@ -190,10 +190,10 @@ Microchip Technology Omniscient Code Generator v1.42 (Free mode) build 201704130
    176                           ;main.c: 36: while(1) {
    177                           
    178                           
-   179                           ;main.c: 38: GP2=1; GP1=1; GP0=1;
-   180  1CD  546                	bsf	6,2	;volatile
-   181  1CE  526                	bsf	6,1	;volatile
-   182  1CF  506                	bsf	6,0	;volatile
+   179                           ;main.c: 38: GP2=0; GP1=0; GP0=0;
+   180  1CD  446                	bcf	6,2	;volatile
+   181  1CE  426                	bcf	6,1	;volatile
+   182  1CF  406                	bcf	6,0	;volatile
    183                           
    184                           ;main.c: 39: Delay_us(1500);
    185  1D0  CDC                	movlw	220
@@ -202,10 +202,10 @@ Microchip Technology Omniscient Code Generator v1.42 (Free mode) build 201704130
    188  1D3  02A                	movwf	Delay_us@DELAY_CNT+1
    189  1D4  903                	fcall	entry__Delay_us
    190                           
-   191                           ;main.c: 40: GP2=0; GP1=0; GP0=0;
-   192  1D5  446                	bcf	6,2	;volatile
-   193  1D6  426                	bcf	6,1	;volatile
-   194  1D7  406                	bcf	6,0	;volatile
+   191                           ;main.c: 40: GP2=1; GP1=1; GP0=1;
+   192  1D5  546                	bsf	6,2	;volatile
+   193  1D6  526                	bsf	6,1	;volatile
+   194  1D7  506                	bsf	6,0	;volatile
    195                           
    196                           ;main.c: 41: Delay_ms(1);
    197  1D8  C01                	movlw	1
@@ -443,7 +443,7 @@ DATA                 0      0       0       6        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.42 build -159332390 
-Symbol Table                                                                                   Sat Jul 29 05:48:07 2017
+Symbol Table                                                                                   Sat Jul 29 09:32:53 2017
 
             __CFG_CP$OFF 0000                       u35 01EA                       u45 01B7  
                      u57 01F0                       fsr 0004                      l462 01E0  

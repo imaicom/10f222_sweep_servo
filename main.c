@@ -35,9 +35,9 @@ void main(void) {
 
     while(1) {
         
-        GP2=1; GP1=1; GP0=1;
-        Delay_us(1500);
         GP2=0; GP1=0; GP0=0;
+        Delay_us(1500);
+        GP2=1; GP1=1; GP0=1;
         Delay_ms(1);    
     };  //  while(1)
 }
