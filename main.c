@@ -23,7 +23,7 @@ void main(void) {
     long int i;
         
     OPTION = 0b11000000;
-    TRISGPIO = 0b1000; // input GP3 / output GP2,GP1,GP0    
+    TRISGPIO = 0b1100; // input GP3, GP2 / output GP1,GP0    
     ANS0 = 0;   // GP0 = digital
     ANS1 = 0;   // GP1 = digital
     
@@ -31,19 +31,40 @@ void main(void) {
 
     while(1) {
         
-        if(GP3 == 0) {  // optimize to MG996R
+        if((GP3 == 0)&&(GP2 == 0)) {  // optimize to MG996R // MAX
             GP0=1;
             Delay_us(180);
             GP0=0;
             Delay_us(1500-180);   
         };
         
-       if(GP3 != 0) {
+        if((GP3 != 0)&&(GP2 == 0)) {
             GP0=1;
-            Delay_us(50);
+            Delay_us(150);
             GP0=0;
-            Delay_us(1500-50);   
+            Delay_us(1500-150);   
             };
+         
+        if((GP3 == 0)&&(GP2 != 0)) {
+            GP0=1;
+            Delay_us(125);
+            GP0=0;
+            Delay_us(1500-125);   
+            };
+         
+        if((GP3 != 0)&&(GP2 != 0)) {
+            GP0=1;
+            Delay_us(110);
+            GP0=0;
+            Delay_us(1500-110);   
+            };
+            
+//        if((GP3 != 0)&&(GP2 != 0)) { // MIN
+//            GP0=1;
+//            Delay_us(50);
+//            GP0=0;
+//            Delay_us(1500-50);   
+//            };
          
     };  //  while(1)
 }

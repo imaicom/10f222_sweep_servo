@@ -1,10 +1,10 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [v F196 `(v ~T0 @X0 1 tf1`ul ]
-"152 /Applications/microchip/xc8/v1.42/include/pic.h
+"152 /Applications/microchip/xc8/v1.43/include/pic.h
 [v __delay `JF196 ~T0 @X0 0 e ]
 [p i __delay ]
 [p mainexit ]
-"457 /Applications/microchip/xc8/v1.42/include/pic10f222.h
+"457 /Applications/microchip/xc8/v1.43/include/pic10f222.h
 [v _OPTION `VWuc ~T0 @X0 0 e@0 ]
 "465
 [v _TRISGPIO `VWuc ~T0 @X0 0 e@6 ]
@@ -24,7 +24,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic10f222.h: 50: extern volatile unsigned char INDF @ 0x000;
-"52 /Applications/microchip/xc8/v1.42/include/pic10f222.h
+"52 /Applications/microchip/xc8/v1.43/include/pic10f222.h
 [; ;pic10f222.h: 52: asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
 [; ;pic10f222.h: 55: typedef union {
@@ -210,26 +210,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 194: extern __bit __timeout;
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
-[; ;stdint.h: 38: typedef signed long int int32_t;
-[; ;stdint.h: 45: typedef unsigned char uint8_t;
-[; ;stdint.h: 51: typedef unsigned int uint16_t;
-[; ;stdint.h: 67: typedef unsigned long int uint32_t;
-[; ;stdint.h: 75: typedef signed char int_least8_t;
-[; ;stdint.h: 82: typedef signed int int_least16_t;
-[; ;stdint.h: 104: typedef signed long int int_least32_t;
-[; ;stdint.h: 111: typedef unsigned char uint_least8_t;
-[; ;stdint.h: 117: typedef unsigned int uint_least16_t;
-[; ;stdint.h: 136: typedef unsigned long int uint_least32_t;
-[; ;stdint.h: 145: typedef signed char int_fast8_t;
-[; ;stdint.h: 152: typedef signed int int_fast16_t;
-[; ;stdint.h: 174: typedef signed long int int_fast32_t;
-[; ;stdint.h: 181: typedef unsigned char uint_fast8_t;
-[; ;stdint.h: 187: typedef unsigned int uint_fast16_t;
-[; ;stdint.h: 206: typedef unsigned long int uint_fast32_t;
-[; ;stdint.h: 212: typedef int32_t intmax_t;
-[; ;stdint.h: 217: typedef uint32_t uintmax_t;
-[; ;stdint.h: 222: typedef int16_t intptr_t;
-[; ;stdint.h: 227: typedef uint16_t uintptr_t;
+[; ;stdint.h: 28: typedef signed short long int int24_t;
+[; ;stdint.h: 36: typedef signed long int int32_t;
+[; ;stdint.h: 43: typedef unsigned char uint8_t;
+[; ;stdint.h: 49: typedef unsigned int uint16_t;
+[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
+[; ;stdint.h: 63: typedef unsigned long int uint32_t;
+[; ;stdint.h: 71: typedef signed char int_least8_t;
+[; ;stdint.h: 78: typedef signed int int_least16_t;
+[; ;stdint.h: 90: typedef signed short long int int_least24_t;
+[; ;stdint.h: 98: typedef signed long int int_least32_t;
+[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
+[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
+[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
+[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
+[; ;stdint.h: 137: typedef signed char int_fast8_t;
+[; ;stdint.h: 144: typedef signed int int_fast16_t;
+[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
+[; ;stdint.h: 164: typedef signed long int int_fast32_t;
+[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
+[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
+[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
+[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
+[; ;stdint.h: 200: typedef int32_t intmax_t;
+[; ;stdint.h: 205: typedef uint32_t uintmax_t;
+[; ;stdint.h: 210: typedef int16_t intptr_t;
+[; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 "6 main.c
 [p x IOSCFS=8MHZ ]
@@ -286,9 +292,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 25: OPTION = 0b11000000;
 "25
 [e = _OPTION -> -> 192 `i `uc ]
-[; ;main.c: 26: TRISGPIO = 0b1000;
+[; ;main.c: 26: TRISGPIO = 0b1100;
 "26
-[e = _TRISGPIO -> -> 8 `i `uc ]
+[e = _TRISGPIO -> -> 12 `i `uc ]
 [; ;main.c: 27: ANS0 = 0;
 "27
 [e = _ANS0 -> -> 0 `i `b ]
@@ -304,9 +310,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "32
 [e :U 31 ]
 {
-[; ;main.c: 34: if(GP3 == 0) {
+[; ;main.c: 34: if((GP3 == 0)&&(GP2 == 0)) {
 "34
-[e $ ! == -> _GP3 `i -> 0 `i 33  ]
+[e $ ! && == -> _GP3 `i -> 0 `i == -> _GP2 `i -> 0 `i 33  ]
 {
 [; ;main.c: 35: GP0=1;
 "35
@@ -324,34 +330,74 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 33 ]
 [; ;main.c: 39: };
-[; ;main.c: 41: if(GP3 != 0) {
+[; ;main.c: 41: if((GP3 != 0)&&(GP2 == 0)) {
 "41
-[e $ ! != -> _GP3 `i -> 0 `i 34  ]
+[e $ ! && != -> _GP3 `i -> 0 `i == -> _GP2 `i -> 0 `i 34  ]
 {
 [; ;main.c: 42: GP0=1;
 "42
 [e = _GP0 -> -> 1 `i `b ]
-[; ;main.c: 43: Delay_us(50);
+[; ;main.c: 43: Delay_us(150);
 "43
-[e ( _Delay_us (1 -> -> 50 `i `ui ]
+[e ( _Delay_us (1 -> -> 150 `i `ui ]
 [; ;main.c: 44: GP0=0;
 "44
 [e = _GP0 -> -> 0 `i `b ]
-[; ;main.c: 45: Delay_us(1500-50);
+[; ;main.c: 45: Delay_us(1500-150);
 "45
-[e ( _Delay_us (1 -> - -> 1500 `i -> 50 `i `ui ]
+[e ( _Delay_us (1 -> - -> 1500 `i -> 150 `i `ui ]
 "46
 }
 [e :U 34 ]
 [; ;main.c: 46: };
+[; ;main.c: 48: if((GP3 == 0)&&(GP2 != 0)) {
 "48
+[e $ ! && == -> _GP3 `i -> 0 `i != -> _GP2 `i -> 0 `i 35  ]
+{
+[; ;main.c: 49: GP0=1;
+"49
+[e = _GP0 -> -> 1 `i `b ]
+[; ;main.c: 50: Delay_us(125);
+"50
+[e ( _Delay_us (1 -> -> 125 `i `ui ]
+[; ;main.c: 51: GP0=0;
+"51
+[e = _GP0 -> -> 0 `i `b ]
+[; ;main.c: 52: Delay_us(1500-125);
+"52
+[e ( _Delay_us (1 -> - -> 1500 `i -> 125 `i `ui ]
+"53
+}
+[e :U 35 ]
+[; ;main.c: 53: };
+[; ;main.c: 55: if((GP3 != 0)&&(GP2 != 0)) {
+"55
+[e $ ! && != -> _GP3 `i -> 0 `i != -> _GP2 `i -> 0 `i 36  ]
+{
+[; ;main.c: 56: GP0=1;
+"56
+[e = _GP0 -> -> 1 `i `b ]
+[; ;main.c: 57: Delay_us(110);
+"57
+[e ( _Delay_us (1 -> -> 110 `i `ui ]
+[; ;main.c: 58: GP0=0;
+"58
+[e = _GP0 -> -> 0 `i `b ]
+[; ;main.c: 59: Delay_us(1500-110);
+"59
+[e ( _Delay_us (1 -> - -> 1500 `i -> 110 `i `ui ]
+"60
+}
+[e :U 36 ]
+[; ;main.c: 60: };
+"69
 }
 [e :U 30 ]
 "32
 [e $U 31  ]
 [e :U 32 ]
-[; ;main.c: 48: };
-[; ;main.c: 49: }
-"49
+[; ;main.c: 69: };
+[; ;main.c: 70: }
+"70
 [e :UE 29 ]
 }
